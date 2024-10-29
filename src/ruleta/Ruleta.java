@@ -48,7 +48,8 @@ public class Ruleta {
         int motiuSortida = 0;
         int tipusAposta = 0;
         int guanyades = 0;
-
+        int randy = 0;
+                
         // Arrays
         String partides[] = new String[10];
         int apostats[] = new int[10];
@@ -122,7 +123,7 @@ public class Ruleta {
                             } while (color.compareTo("v") != 0 && color.compareTo("n") != 0);
 
                             // Tira la ruleta
-                            int randy = (int) (Math.random() * 37);
+                            randy = (int) (Math.random() * 37);
 
                             //Els colors de la ruleta no tenen ningun patro més que aquest:
                             if ((randy > 0 && randy < 10) && randy % 2 == 1) {
@@ -166,6 +167,30 @@ public class Ruleta {
                                 }
                                 apostats[i] = aposta;
                             } while (aposta < 1 || diners - aposta < 0);
+                            
+                            // Escull Parell imparell
+                            do {
+                                System.out.println("Parell o imparell? (p/i)");
+                                color = scan.nextLine();
+                            } while (color.compareTo("p") != 0 && color.compareTo("i") != 0);
+                            
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if ((randy % 2 == 1 && color.compareTo("i") == 0) || (randy % 2 == 0 && color.compareTo("p") == 0)) {
+                                System.out.println("Henorabona! Gaunyes!");
+                                diners +=aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
                             
                             
                             break;
