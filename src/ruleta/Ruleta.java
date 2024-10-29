@@ -250,7 +250,8 @@ public class Ruleta {
                                 aposta /= 2;
                                 diners -= aposta;
                             } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
-                                System.out.println("Henorabona! Gaunyes!");
+                                System.out.println("Henorabona! Gaunyes Doble!");
+                                aposta = aposta * 2;
                                 diners += aposta;
                                 guanyades++;
                             } else {
@@ -260,7 +261,64 @@ public class Ruleta {
                             
                             break;
                         case 5:
-
+                            partides[i] = "Columna";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            
+                            
+                            // Crear cada columna 
+                            int dreta[] = new int[12];
+                            int centre[] = new int[12];
+                            int esquerra[] = new int[12];
+                            int bucleDreta = 0;
+                            int bucleCentre = 0;
+                            int bucleEsquerra = 0;
+                            
+                            for(int x = 1; x <= 36; x++){
+                                if(x % 3 == 1){
+                                    dreta[bucleDreta] = x;
+                                    bucleDreta++;
+                                }else if(x % 3 == 2){
+                                    centre[bucleCentre] = x;
+                                    bucleCentre++;
+                                }else if(x % 3 == 0){
+                                    esquerra[bucleEsquerra] = x;
+                                    bucleEsquerra++;
+                                }
+                            }
+                            
+                            
+                            // Escull Columna
+                            int col = 0;
+                            do {
+                                System.out.println("Quina dotzena vols?");
+                                System.out.println("1. Columna dreta");
+                                System.out.println("2. Columna centre");
+                                System.out.println("3. Columna esquerra");
+                                col = scan.nextInt();
+                            } while (col != 1 && col != 2 && col != 3);
+                            
+                            
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            
+                            // Resultat ruleta
+                            /*System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
+                                System.out.println("Henorabona! Gaunyes Doble!");
+                                aposta = aposta * 2;
+                                diners += aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }*/
+                            
                             break;
                         case 6:
 
