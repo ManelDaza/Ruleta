@@ -29,6 +29,25 @@ public class Ruleta {
         }
     }
 
+    public static int fesAposta(int aposta, int diners) {
+        Scanner scan = new Scanner(System.in);
+        // Digues cuant apostes
+        System.out.println("No va mes");
+        System.out.print("Digues la cuantitat de diners que vols apostar: ");
+        do {
+            aposta = scan.nextInt();
+            scan.nextLine();
+            if (aposta < 1 || diners - aposta < 0) {
+                System.out.println("No pots ni apostar menys de 0 ni apostar mes diners del que tens");
+                System.out.println("Encara tens " + diners + " euros");
+                System.out.println("Cuant apostes?");
+            }
+        } while (aposta < 1 || diners - aposta < 0);
+        return aposta;
+    }
+    
+    
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         // Comença la ruleta
@@ -49,7 +68,7 @@ public class Ruleta {
         int tipusAposta = 0;
         int guanyades = 0;
         int randy = 0;
-                
+
         // Arrays
         String partides[] = new String[10];
         int apostats[] = new int[10];
@@ -67,7 +86,7 @@ public class Ruleta {
             System.out.println("2. Consultar resultats");
             System.out.println("3. Sortir");
             casino = scan.nextInt();
-            if(diners == 0){
+            if (diners == 0) {
                 System.out.println("Que fas aqui? NO ET QUEDEN DINERS! FORA!");
                 casino = 3;
                 motiuSortida = 2;
@@ -77,7 +96,7 @@ public class Ruleta {
                     System.out.println("Facin joc");
                     System.out.println("1. Color");
                     System.out.println("2. Parells/Imparell");
-                    System.out.println("3. Passa/Falta");
+                    System.out.println("3. Pasa/Falta");
                     System.out.println("4. Dotzena");
                     System.out.println("5. Columna");
                     System.out.println("6. Doble dotzena");
@@ -100,19 +119,9 @@ public class Ruleta {
                         case 1:
                             partides[i] = "Color";
                             // Digues cuant apostes
-                            System.out.println("No va mes");
-                            System.out.print("Digues la cuantitat de diners que vols apostar: ");
-                            do {
-                                aposta = scan.nextInt();
-                                scan.nextLine();
-                                if (aposta < 1 || diners - aposta < 0) {
-                                    System.out.println("No pots ni apostar menys de 0 ni apostar mes diners del que tens");
-                                    System.out.println("Encara tens " + diners + " euros");
-                                    System.out.println("Cuant apostes?");
-                                }
-                                apostats[i] = aposta;
-                            } while (aposta < 1 || diners - aposta < 0);
-
+                            aposta = fesAposta(aposta, diners);
+                            
+                            apostats[i] = aposta;
                             String color = "";
                             boolean vermell = false;
 
@@ -144,7 +153,7 @@ public class Ruleta {
                                 diners -= aposta;
                             } else if ((vermell == true && color.compareTo("v") == 0) || (vermell == false && color.compareTo("n") == 0)) {
                                 System.out.println("Henorabona! Gaunyes!");
-                                diners +=aposta;
+                                diners += aposta;
                                 guanyades++;
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
@@ -155,25 +164,82 @@ public class Ruleta {
                         case 2:
                             partides[i] = "Parells/Imparells";
                             // Digues cuant apostes
-                            System.out.println("No va mes");
-                            System.out.print("Digues la cuantitat de diners que vols apostar: ");
-                            do {
-                                aposta = scan.nextInt();
-                                scan.nextLine();
-                                if (aposta < 1 || diners - aposta < 0) {
-                                    System.out.println("No pots ni apostar menys de 0 ni apostar mes diners del que tens");
-                                    System.out.println("Encara tens " + diners + " euros");
-                                    System.out.println("Cuant apostes?");
-                                }
-                                apostats[i] = aposta;
-                            } while (aposta < 1 || diners - aposta < 0);
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
                             
                             // Escull Parell imparell
                             do {
                                 System.out.println("Parell o imparell? (p/i)");
                                 color = scan.nextLine();
                             } while (color.compareTo("p") != 0 && color.compareTo("i") != 0);
+
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if ((randy % 2 == 1 && color.compareTo("i") == 0) || (randy % 2 == 0 && color.compareTo("p") == 0)) {
+                                System.out.println("Henorabona! Gaunyes!");
+                                diners += aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
+
+                            break;
+                        case 3:
+                            partides[i] = "Pasa/Falta";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
                             
+                            // Escull Pasa Falta
+                            do {
+                                System.out.println("Pasa o Falta? (p/f)");
+                                color = scan.nextLine();
+                            } while (color.compareTo("p") != 0 && color.compareTo("f") != 0);
+
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if ((randy < 19 && color.compareTo("p") == 0) || (randy > 18 && color.compareTo("f") == 0)) {
+                                System.out.println("Henorabona! Gaunyes!");
+                                diners += aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
+                            
+                            break;
+                        case 4:
+                            partides[i] = "Dotzena";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+
+                            // Escull Dotzena
+                            int dotzena = 0;
+                            do {
+                                System.out.println("Quina dotzena vols?");
+                                System.out.println("1. Del 1 al 12");
+                                System.out.println("2. Del 13 al 24");
+                                System.out.println("3. Del 25 al 36");
+                                dotzena = scan.nextInt();
+                                
+                            } while (dotzena != 1 && dotzena != 2 && dotzena != 3);
+
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
                             
@@ -183,22 +249,15 @@ public class Ruleta {
                                 System.out.println("Mala sort! em quedo la meitat");
                                 aposta /= 2;
                                 diners -= aposta;
-                            } else if ((randy % 2 == 1 && color.compareTo("i") == 0) || (randy % 2 == 0 && color.compareTo("p") == 0)) {
+                            } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
                                 System.out.println("Henorabona! Gaunyes!");
-                                diners +=aposta;
+                                diners += aposta;
                                 guanyades++;
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
                             
-                            
-                            break;
-                        case 3:
-
-                            break;
-                        case 4:
-
                             break;
                         case 5:
 
@@ -230,18 +289,19 @@ public class Ruleta {
                     }
                     break;
                 case 2:
-                    
+
                     System.out.println("Partides jugades: " + i);
                     System.out.println("Partides guanyades: " + guanyades);
                     System.out.println("Partides perdudes: " + (i - guanyades));
                     System.out.println("Tipus aposta per partida i diners apostats");
-                    for(int j = 0; j < i; j++){
-                        
-                        System.out.println("-    Partida " + (j+1) + " del joc " + partides[j] + " diners apostats: " + apostats[j]);
+                    for (int j = 0; j < i; j++) {
+
+                        System.out.println("-    Partida " + (j + 1) + " del joc " + partides[j] + " diners apostats: " + apostats[j]);
                     }
-                    
+
                     System.out.println("Et queden " + diners + " euros");
-                    
+                    System.out.println("Escriu cualsevol caracter per sortir");
+                    scan.nextInt();
                     i--;
                     break;
                 case 3:
