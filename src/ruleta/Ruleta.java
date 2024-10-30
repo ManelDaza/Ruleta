@@ -271,9 +271,14 @@ public class Ruleta {
                             int dreta[] = new int[12];
                             int centre[] = new int[12];
                             int esquerra[] = new int[12];
+                            
                             int bucleDreta = 0;
                             int bucleCentre = 0;
                             int bucleEsquerra = 0;
+                            
+                            boolean dretaBool = false;
+                            boolean centreBool = false;
+                            boolean esquerraBool = false;
                             
                             for(int x = 1; x <= 36; x++){
                                 if(x % 3 == 1){
@@ -288,6 +293,9 @@ public class Ruleta {
                                 }
                             }
                             
+                            for (int x = 0; x < 12; x++){
+                                System.out.println(centre[x]);
+                            }
                             
                             // Escull Columna
                             int col = 0;
@@ -303,13 +311,25 @@ public class Ruleta {
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
                             
+                            // en quin array esta el numero
+                            for(int x = 0; x < 12; x++){
+                                if(randy == dreta[x]){
+                                    dretaBool = true;
+                                }else if(randy == centre[x]){
+                                    centreBool = true;
+                                }else if(randy == esquerra[x]){
+                                    esquerraBool = true;
+                                }
+                            }
+                            
+                            
                             // Resultat ruleta
-                            /*System.out.println("El numero de la ruleta es: " + randy);
+                            System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
                                 System.out.println("Mala sort! em quedo la meitat");
                                 aposta /= 2;
                                 diners -= aposta;
-                            } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
+                            } else if ((dretaBool == true && col == 1) || (centreBool == true && col == 2) || (esquerraBool == true && col == 3)) {
                                 System.out.println("Henorabona! Gaunyes Doble!");
                                 aposta = aposta * 2;
                                 diners += aposta;
@@ -317,11 +337,26 @@ public class Ruleta {
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
-                            }*/
+                            }
                             
                             break;
                         case 6:
-
+                            partides[i] = "Doble Dotzena";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            
+                            // Escull Dotzenes
+                            dotzena = 0;
+                            do {
+                                System.out.println("Quina dotzena vols?");
+                                System.out.println("1. Del 1 al 24");
+                                System.out.println("2. Del 13 al 36");
+                                dotzena = scan.nextInt();
+                                
+                            } while (dotzena != 1 && dotzena != 2);
+                            
+                            
                             break;
                         case 7:
 
