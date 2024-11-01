@@ -29,7 +29,7 @@ public class Ruleta {
         }
     }
 
-    public static int fesAposta(int aposta, int diners) {
+    public static double fesAposta(double aposta, double diners) {
         Scanner scan = new Scanner(System.in);
         // Digues cuant apostes
         System.out.println("No va mes");
@@ -71,13 +71,13 @@ public class Ruleta {
 
         // Arrays
         String partides[] = new String[10];
-        int apostats[] = new int[10];
+        double apostats[] = new double[10];
 
         //Estadistiques
         int diners = 100;
 
         for (int i = 0; i < 10; i++) {
-            int aposta = 0;
+            double aposta = 0;
             if (i == 9) {
                 motiuSortida = 1;
             }
@@ -293,10 +293,6 @@ public class Ruleta {
                                 }
                             }
                             
-                            for (int x = 0; x < 12; x++){
-                                System.out.println(centre[x]);
-                            }
-                            
                             // Escull Columna
                             int col = 0;
                             do {
@@ -356,6 +352,24 @@ public class Ruleta {
                                 
                             } while (dotzena != 1 && dotzena != 2);
                             
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if ((randy > 1 && randy < 25 && dotzena == 1) || (randy > 24 && dotzena == 1)) {
+                                System.out.println("Gaunyes! Pero no tant!");
+                                aposta = aposta * 1.5;
+                                diners += aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
                             
                             break;
                         case 7:
