@@ -14,6 +14,8 @@ public class Ruleta {
 
     // una funcio per fer el print del tauler:
     public static void tauler() {
+        System.out.println();
+        System.out.println("Aqui tens la taula del casino per referencia:");
         int numerosTaula = 0;
         System.out.println("   " + numerosTaula + "   ");
         for (int i = 0; i < 12; i++) {
@@ -45,8 +47,6 @@ public class Ruleta {
         } while (aposta < 1 || diners - aposta < 0);
         return aposta;
     }
-    
-    
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -120,7 +120,7 @@ public class Ruleta {
                             partides[i] = "Color";
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
-                            
+
                             apostats[i] = aposta;
                             String color = "";
                             boolean vermell = false;
@@ -166,7 +166,7 @@ public class Ruleta {
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
-                            
+
                             // Escull Parell imparell
                             do {
                                 System.out.println("Parell o imparell? (p/i)");
@@ -197,7 +197,7 @@ public class Ruleta {
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
-                            
+
                             // Escull Pasa Falta
                             do {
                                 System.out.println("Pasa o Falta? (p/f)");
@@ -221,7 +221,7 @@ public class Ruleta {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
+
                             break;
                         case 4:
                             partides[i] = "Dotzena";
@@ -237,12 +237,12 @@ public class Ruleta {
                                 System.out.println("2. Del 13 al 24");
                                 System.out.println("3. Del 25 al 36");
                                 dotzena = scan.nextInt();
-                                
+
                             } while (dotzena != 1 && dotzena != 2 && dotzena != 3);
 
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
-                            
+
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
@@ -258,41 +258,40 @@ public class Ruleta {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
+
                             break;
                         case 5:
                             partides[i] = "Columna";
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
-                            
-                            
+
                             // Crear cada columna 
                             int dreta[] = new int[12];
                             int centre[] = new int[12];
                             int esquerra[] = new int[12];
-                            
+
                             int bucleDreta = 0;
                             int bucleCentre = 0;
                             int bucleEsquerra = 0;
-                            
+
                             boolean dretaBool = false;
                             boolean centreBool = false;
                             boolean esquerraBool = false;
-                            
-                            for(int x = 1; x <= 36; x++){
-                                if(x % 3 == 1){
+
+                            for (int x = 1; x <= 36; x++) {
+                                if (x % 3 == 1) {
                                     dreta[bucleDreta] = x;
                                     bucleDreta++;
-                                }else if(x % 3 == 2){
+                                } else if (x % 3 == 2) {
                                     centre[bucleCentre] = x;
                                     bucleCentre++;
-                                }else if(x % 3 == 0){
+                                } else if (x % 3 == 0) {
                                     esquerra[bucleEsquerra] = x;
                                     bucleEsquerra++;
                                 }
                             }
-                            
+
                             // Escull Columna
                             int col = 0;
                             do {
@@ -302,23 +301,21 @@ public class Ruleta {
                                 System.out.println("3. Columna esquerra");
                                 col = scan.nextInt();
                             } while (col != 1 && col != 2 && col != 3);
-                            
-                            
+
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
-                            
+
                             // en quin array esta el numero
-                            for(int x = 0; x < 12; x++){
-                                if(randy == dreta[x]){
+                            for (int x = 0; x < 12; x++) {
+                                if (randy == dreta[x]) {
                                     dretaBool = true;
-                                }else if(randy == centre[x]){
+                                } else if (randy == centre[x]) {
                                     centreBool = true;
-                                }else if(randy == esquerra[x]){
+                                } else if (randy == esquerra[x]) {
                                     esquerraBool = true;
                                 }
                             }
-                            
-                            
+
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
@@ -334,14 +331,14 @@ public class Ruleta {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
+
                             break;
                         case 6:
                             partides[i] = "Doble Dotzena";
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
-                            
+
                             // Escull Dotzenes
                             dotzena = 0;
                             do {
@@ -349,12 +346,12 @@ public class Ruleta {
                                 System.out.println("1. Del 1 al 24");
                                 System.out.println("2. Del 13 al 36");
                                 dotzena = scan.nextInt();
-                                
+
                             } while (dotzena != 1 && dotzena != 2);
-                            
+
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
-                            
+
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
@@ -370,65 +367,63 @@ public class Ruleta {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
+
                             break;
                         case 7:
-                            partides[i] = "Columna";
+                            partides[i] = "Doble Columna";
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
-                            
+
                             // Crear cada columna 
                             int dreta7[] = new int[12];
                             int centre7[] = new int[12];
                             int esquerra7[] = new int[12];
-                            
+
                             bucleDreta = 0;
                             bucleCentre = 0;
                             bucleEsquerra = 0;
-                            
+
                             dretaBool = false;
                             centreBool = false;
                             esquerraBool = false;
-                            
-                            for(int x = 1; x <= 36; x++){
-                                if(x % 3 == 1){
+
+                            for (int x = 1; x <= 36; x++) {
+                                if (x % 3 == 1) {
                                     dreta7[bucleDreta] = x;
                                     bucleDreta++;
-                                }else if(x % 3 == 2){
+                                } else if (x % 3 == 2) {
                                     centre7[bucleCentre] = x;
                                     bucleCentre++;
-                                }else if(x % 3 == 0){
+                                } else if (x % 3 == 0) {
                                     esquerra7[bucleEsquerra] = x;
                                     bucleEsquerra++;
                                 }
                             }
-                            
+
                             // Escull Columna
                             col = 0;
                             do {
-                                System.out.println("Quina dotzena vols?");
+                                System.out.println("Quina Columna vols?");
                                 System.out.println("1. Columna dreta i centre");
                                 System.out.println("2. Columna esquerra i centre");
                                 col = scan.nextInt();
                             } while (col != 1 && col != 2);
-                            
-                            
+
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
-                            
+
                             // en quin array esta el numero
-                            for(int x = 0; x < 12; x++){
-                                if(randy == dreta7[x]){
+                            for (int x = 0; x < 12; x++) {
+                                if (randy == dreta7[x]) {
                                     dretaBool = true;
-                                }else if(randy == centre7[x]){
+                                } else if (randy == centre7[x]) {
                                     centreBool = true;
-                                }else if(randy == esquerra7[x]){
+                                } else if (randy == esquerra7[x]) {
                                     esquerraBool = true;
                                 }
                             }
-                            
-                            
+
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
@@ -444,12 +439,69 @@ public class Ruleta {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
-                            
-                            
-                            
+
                             break;
                         case 8:
+                            partides[i] = "Sisena";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            int dreta8[] = new int[14];
+                            int seguentDreta = 0;
+
+                            // Escull Sisena
+                            boolean numeroValid = false;
+                            col = 0;
+                            do {
+                                System.out.println("Inserta el primer nombre de la teva sisena (el numero ha de ser de la primera columna y tabé ha de tindre 6 números més endevant)");
+
+                                col = scan.nextInt();
+                                if (col < 0 || col > 31) {
+                                    numeroValid = false;
+                                } else {
+                                    for (int x = 1; x <= 36; x++) {
+                                        if (x % 3 == 1) {
+                                            dreta8[seguentDreta] = x;
+                                            seguentDreta++;
+                                            if (col == x) {
+                                                numeroValid = true;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (numeroValid == false) {
+                                    {
+                                        System.out.println("Numero no valid (si no pots recordar els numeros de la primera columna pots fixarte en el print mes adalt))");
+                                    }
+                                }
+                            } while (numeroValid == false);
+
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            int randyLloc = 0;
+
+                            for (int x = 1; x < 36; x = x + 3) {
+                                if (randy >= x && randy <= x + 5) {
+                                    randyLloc = x;
+                                }
+                            }
+
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if (randy == 0) {
+                                System.out.println("Mala sort! em quedo la meitat");
+                                aposta /= 2;
+                                diners -= aposta;
+                            } else if (randyLloc == col) {
+                                System.out.println("Gaunyes! Per SIS!");
+                                aposta = aposta * 6;
+                                diners += aposta;
+                                guanyades++;
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
 
                             break;
                         case 9:
@@ -468,6 +520,7 @@ public class Ruleta {
                             System.out.println("Ets tot un cobejat!");
                             i--;
                     }
+
                     break;
                 case 2:
 
