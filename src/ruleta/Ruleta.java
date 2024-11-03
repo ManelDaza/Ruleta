@@ -246,8 +246,7 @@ public class Ruleta {
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
-                                System.out.println("Mala sort! em quedo la meitat");
-                                aposta /= 2;
+                                System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
                                 System.out.println("Henorabona! Gaunyes Doble!");
@@ -319,8 +318,7 @@ public class Ruleta {
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
-                                System.out.println("Mala sort! em quedo la meitat");
-                                aposta /= 2;
+                                System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             } else if ((dretaBool == true && col == 1) || (centreBool == true && col == 2) || (esquerraBool == true && col == 3)) {
                                 System.out.println("Henorabona! Gaunyes Doble!");
@@ -355,8 +353,7 @@ public class Ruleta {
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
-                                System.out.println("Mala sort! em quedo la meitat");
-                                aposta /= 2;
+                                System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             } else if ((randy > 1 && randy < 25 && dotzena == 1) || (randy > 24 && dotzena == 1)) {
                                 System.out.println("Gaunyes! Pero no tant!");
@@ -427,8 +424,7 @@ public class Ruleta {
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
                             if (randy == 0) {
-                                System.out.println("Mala sort! em quedo la meitat");
-                                aposta /= 2;
+                                System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             } else if ((dretaBool == true && col == 1) || (centreBool == true) || (esquerraBool == true && col == 2)) {
                                 System.out.println("Gaunyes! Pero no tant!");
@@ -489,11 +485,7 @@ public class Ruleta {
 
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
-                            if (randy == 0) {
-                                System.out.println("Mala sort! em quedo la meitat");
-                                aposta /= 2;
-                                diners -= aposta;
-                            } else if (randyLloc == col) {
+                            if (randyLloc == col) {
                                 System.out.println("Gaunyes! Per SIS!");
                                 aposta = aposta * 6;
                                 diners += aposta;
@@ -505,7 +497,57 @@ public class Ruleta {
 
                             break;
                         case 9:
+                            partides[i] = "quadre";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            int esquerra9[] = new int[14];
+                            int seguentEsquerra = 0;
 
+                            // Escull Sisena
+                            boolean numeroValid9 = true;
+                            col = 0;
+                            do {
+                                numeroValid9 = true;
+                                System.out.println("Inserta el nombre mes petit del cuadrat");
+
+                                col = scan.nextInt();
+                                if (col < 0 || col > 31) {
+                                    numeroValid9 = false;
+                                } else {
+                                    for (int x = 1; x <= 36; x++) {
+                                        if (x % 3 == 0) {
+                                            esquerra9[seguentEsquerra] = x;
+                                            seguentEsquerra++;
+                                            if (col == x) {
+                                                numeroValid9 = false;
+                                            }
+                                        }
+                                    }
+                                }
+                                seguentEsquerra = 0;
+                                if (numeroValid9 == false) {
+                                    {
+                                        System.out.println("Numeros de la tercera columna son imposibles que siguin el mes petit");
+                                    }
+                                }
+                            } while (numeroValid9 == false);
+                            
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if(randy == col || randy == col+1 || randy == col+3 || randy == col+4){
+                                System.out.println("Gaunyes! Per NOU!");
+                                aposta = aposta * 9;
+                                diners += aposta;
+                                guanyades++;
+                            }else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                            }
+                            
                             break;
                         case 10:
 
