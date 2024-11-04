@@ -504,7 +504,7 @@ public class Ruleta {
                             int esquerra9[] = new int[14];
                             int seguentEsquerra = 0;
 
-                            // Escull Sisena
+                            // Escull 
                             boolean numeroValid9 = true;
                             col = 0;
                             do {
@@ -557,7 +557,7 @@ public class Ruleta {
                             int dreta10[] = new int[14];
                             int seguentDreta10 = 0;
 
-                            // Escull Sisena
+                            // Escull 
                             col = 0;
                             do {
                                 System.out.println("Inserta el numero mes petit de la fila a la que apostes");
@@ -611,8 +611,60 @@ public class Ruleta {
                             
                             
                             
+
                             break;
                         case 12:
+                            partides[i] = "Ple";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+
+                            // Escull numero
+                            do {
+                                System.out.println("Escull cualsevol numero de la taula");
+                                col = scan.nextInt();
+
+                            } while (col <= 0 || col >= 36);
+
+                            
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+                            
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if ((randy == col || randy == col + 1 || randy == col + 2)) {
+                                System.out.println("Gaunyes! Per TRENTASIS!!!");
+                                aposta = aposta * 12;
+                                diners += aposta;
+                                guanyades++;
+                                partides[i] += " (guanyada)";
+                                System.out.println("        ██████████                  \n"
+                                        + "    ████▒▒▒▒▒▒▒▒▒▒████              \n"
+                                        + "  ██▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒██            \n"
+                                        + "  ██▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒██            \n"
+                                        + "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          \n"
+                                        + "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          \n"
+                                        + "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          \n"
+                                        + "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          \n"
+                                        + "██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██          \n"
+                                        + "  ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██            \n"
+                                        + "  ██▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓██            \n"
+                                        + "    ████▒▒▒▒▒▒▒▒▒▒████              \n"
+                                        + "        ██▓▓▒▒▓▓██                  \n"
+                                        + "        ██▒▒▒▒▒▒██                  \n"
+                                        + "          ██████                    \n"
+                                        + "            ██                      \n"
+                                        + "            ██          ██████      \n"
+                                        + "              ██      ██      ██    \n"
+                                        + "                ██████          ██  \n"
+                                        + "                                ██  \n"
+                                        + "                              ██░░██\n"
+                                        + "                              ██████");
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                                partides[i] += " (perduda)";
+                            }
 
                             break;
                         default:
