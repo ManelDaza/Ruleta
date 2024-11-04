@@ -604,6 +604,7 @@ public class Ruleta {
 
                             break;
                         case 11:
+                            // INCOMPLET
                             partides[i] = "Cavall";
                             // Digues cuant apostes
                             aposta = fesAposta(aposta, diners);
