@@ -532,28 +532,85 @@ public class Ruleta {
                                     }
                                 }
                             } while (numeroValid9 == false);
-                            
+
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
-                            
+
                             // Resultat ruleta
                             System.out.println("El numero de la ruleta es: " + randy);
-                            if(randy == col || randy == col+1 || randy == col+3 || randy == col+4){
+                            if (randy == col || randy == col + 1 || randy == col + 3 || randy == col + 4) {
                                 System.out.println("Gaunyes! Per NOU!");
                                 aposta = aposta * 9;
                                 diners += aposta;
                                 guanyades++;
-                            }else {
+                            } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
                             }
-                            
+
                             break;
                         case 10:
+                            partides[i] = "Transversal";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            int dreta10[] = new int[14];
+                            int seguentDreta10 = 0;
+
+                            // Escull Sisena
+                            col = 0;
+                            do {
+                                System.out.println("Inserta el numero mes petit de la fila a la que apostes");
+                                col = scan.nextInt();
+                                numeroValid = false;
+                                if (col < 0 || col > 31) {
+                                    numeroValid = false;
+                                } else {
+                                    for (int x = 1; x <= 36; x++) {
+                                        if (x % 3 == 1) {
+                                            dreta10[seguentDreta10] = x;
+                                            seguentDreta10++;
+                                            if (col == x) {
+                                                numeroValid = true;
+                                            }
+                                        }
+                                    }
+                                }
+                                seguentDreta10 = 0;
+                                if (numeroValid == false) {
+                                    {
+                                        System.out.println("Numero no valid (si no pots recordar els numeros de la primera columna pots fixarte en el print mes adalt))");
+                                    }
+                                }
+
+                            } while (numeroValid == false);
+
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
+
+                            // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
+                            if ((randy == col || randy == col + 1 || randy == col + 2)) {
+                                System.out.println("Gaunyes! Per DOTZE!");
+                                aposta = aposta * 12;
+                                diners += aposta;
+                                guanyades++;
+                                partides[i] += " (guanyada)";
+                            } else {
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                                partides[i] += " (perduda)";
+                            }
 
                             break;
                         case 11:
-
+                            partides[i] = "Cavall";
+                            // Digues cuant apostes
+                            aposta = fesAposta(aposta, diners);
+                            apostats[i] = aposta;
+                            
+                            
+                            
                             break;
                         case 12:
 
