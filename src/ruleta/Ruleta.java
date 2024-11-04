@@ -609,8 +609,36 @@ public class Ruleta {
                             aposta = fesAposta(aposta, diners);
                             apostats[i] = aposta;
                             
+                            // numeros Apostats
+                            int primer = 0,segon = 0;
+                            
+                            do{
+                                System.out.println("Escull dos numeros que estiguin conjunts vertical o horitzontalment, (el primer numero ha de ser el mes petit i el segon es el mes gran)");
+                                primer = scan.nextInt();
+                                segon = scan.nextInt();
+                                
+                                if((primer != segon-1) || (primer != segon-3)){
+                                   System.out.println("Aquests numeros no son valids torna a insertarlos siusplau");
+                                }
+                                
+                            }while((primer != segon-1) || (primer != segon-3));
+                            
+                            // Tira la ruleta
+                            randy = (int) (Math.random() * 37);
                             
                             
+                            // Resultat ruleta
+                            if(randy == primer || randy == segon){
+                                System.out.println("Gaunyes! Per DIVUIT!");
+                                aposta = aposta * 18;
+                                diners += aposta;
+                                guanyades++;
+                                partides[i] += " (guanyada)";
+                            }else{
+                                System.out.println("Quina pena! Em quedo tots els diners");
+                                diners -= aposta;
+                                partides[i] += " (perduda)";
+                            }
 
                             break;
                         case 12:
