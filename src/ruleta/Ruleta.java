@@ -612,23 +612,26 @@ public class Ruleta {
                             
                             // numeros Apostats
                             int primer = 0,segon = 0;
-                            
+                            boolean repetir11 = false;
                             do{
+                                repetir11 = false;
                                 System.out.println("Escull dos numeros que estiguin conjunts vertical o horitzontalment, (el primer numero ha de ser el mes petit i el segon es el mes gran)");
                                 primer = scan.nextInt();
                                 segon = scan.nextInt();
                                 
-                                if((primer != segon-1) || (primer != segon-3)){
+                                if(((primer != segon-1) && (primer != segon-3)) || (segon > 36) || (primer % 3 == 0 && segon % 3 != 0)){
                                    System.out.println("Aquests numeros no son valids torna a insertarlos siusplau");
+                                   repetir11 = true;
                                 }
                                 
-                            }while((primer != segon-1) || (primer != segon-3));
+                            }while(repetir11 == true);
                             
                             // Tira la ruleta
                             randy = (int) (Math.random() * 37);
                             
                             
                             // Resultat ruleta
+                            System.out.println("El numero de la ruleta es: " + randy);
                             if(randy == primer || randy == segon){
                                 System.out.println("Gaunyes! Per DIVUIT!");
                                 aposta = aposta * 18;
