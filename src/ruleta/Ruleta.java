@@ -151,13 +151,16 @@ public class Ruleta {
                                 System.out.println("Mala sort! em quedo la meitat");
                                 aposta /= 2;
                                 diners -= aposta;
+                                partides[i] += " (era un zero)";
                             } else if ((vermell == true && color.compareTo("v") == 0) || (vermell == false && color.compareTo("n") == 0)) {
                                 System.out.println("Henorabona! Gaunyes!");
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -182,13 +185,16 @@ public class Ruleta {
                                 System.out.println("Mala sort! em quedo la meitat");
                                 aposta /= 2;
                                 diners -= aposta;
+                                partides[i] += " (era un zero)";
                             } else if ((randy % 2 == 1 && color.compareTo("i") == 0) || (randy % 2 == 0 && color.compareTo("p") == 0)) {
                                 System.out.println("Henorabona! Gaunyes!");
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -213,13 +219,16 @@ public class Ruleta {
                                 System.out.println("Mala sort! em quedo la meitat");
                                 aposta /= 2;
                                 diners -= aposta;
+                                partides[i] += " (era un zero)";
                             } else if ((randy < 19 && color.compareTo("p") == 0) || (randy > 18 && color.compareTo("f") == 0)) {
                                 System.out.println("Henorabona! Gaunyes!");
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -248,14 +257,17 @@ public class Ruleta {
                             if (randy == 0) {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             } else if ((randy < 13 && dotzena == 1) || (randy < 25 && randy > 12 && dotzena == 2) || (randy < 37 && randy > 24 && dotzena == 3)) {
                                 System.out.println("Henorabona! Gaunyes Doble!");
                                 aposta = aposta * 2;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -320,14 +332,17 @@ public class Ruleta {
                             if (randy == 0) {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             } else if ((dretaBool == true && col == 1) || (centreBool == true && col == 2) || (esquerraBool == true && col == 3)) {
                                 System.out.println("Henorabona! Gaunyes Doble!");
                                 aposta = aposta * 2;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -355,14 +370,17 @@ public class Ruleta {
                             if (randy == 0) {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             } else if ((randy > 1 && randy < 25 && dotzena == 1) || (randy > 24 && dotzena == 1)) {
                                 System.out.println("Gaunyes! Pero no tant!");
                                 aposta = aposta * 1.5;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -426,14 +444,17 @@ public class Ruleta {
                             if (randy == 0) {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             } else if ((dretaBool == true && col == 1) || (centreBool == true) || (esquerraBool == true && col == 2)) {
                                 System.out.println("Gaunyes! Pero no tant!");
                                 aposta = aposta * 1.5;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -490,9 +511,11 @@ public class Ruleta {
                                 aposta = aposta * 6;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
@@ -543,9 +566,11 @@ public class Ruleta {
                                 aposta = aposta * 9;
                                 diners += aposta;
                                 guanyades++;
+                                partides[i] += " (guanyada)";
                             } else {
                                 System.out.println("Quina pena! Em quedo tots els diners");
                                 diners -= aposta;
+                                partides[i] += " (perduda)";
                             }
 
                             break;
