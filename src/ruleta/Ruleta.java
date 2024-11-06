@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
+
 package ruleta;
-
 import java.util.Scanner;
-
 /**
  *
  * @author Manel
  */
 public class Ruleta {
-
     // una funcio per fer el print del tauler:
     public static void tauler() {
         System.out.println();
